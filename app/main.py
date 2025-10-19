@@ -13,8 +13,7 @@ from app.config import settings
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="A simple notification backend service with SMTP support",
-    debug=settings.debug
+    description="A simple notification backend service with SMTP support"
 )
 
 
