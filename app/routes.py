@@ -102,3 +102,25 @@ async def test_smtp_connection():
         "email_from_name": mail_controller.email_from_name
     }
 
+
+@router.get("/rabbitmq/stats", status_code=status.HTTP_200_OK)
+async def get_rabbitmq_stats():
+    """
+    Get RabbitMQ consumer statistics
+    
+    Returns statistics about message processing
+    """
+    try:
+        from app.rabbitmq_consumer import consumer
+        stats = consumer.get_stats()
+        return {
+            "status": "ok",
+            "consumer": stats
+        }
+    except Exception as e:
+        logger.error(f"Failed to get RabbitMQ stats: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to retrieve RabbitMQ statistics"
+        )
+
