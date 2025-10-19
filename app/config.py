@@ -16,12 +16,23 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
     
-    # SMTP settings (for future notification implementation)
+    # SMTP settings (Mailgun configuration)
     smtp_host: Optional[str] = None
     smtp_port: int = 587
     smtp_username: Optional[str] = None
     smtp_password: Optional[str] = None
     smtp_use_tls: bool = True
+    
+    # Email settings
+    email_from: str = "notification@neudiagnostics.dadames.tech"
+    email_from_name: str = "neudiagnostics"
+    
+    # RabbitMQ settings
+    rabbitmq_url: str = "amqp://guest:guest@localhost:5672/"
+    rabbitmq_queue_name: str = "diagnostic_notifications"
+    rabbitmq_prefetch_count: int = 10
+    rabbitmq_max_retries: int = 3
+    rabbitmq_dlq_name: str = "diagnostic_notifications_dlq"
     
     model_config = ConfigDict(
         env_file=".env",
