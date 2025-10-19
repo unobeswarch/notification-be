@@ -27,6 +27,13 @@ class Settings(BaseSettings):
     email_from: str = "notification@neudiagnostics.dadames.tech"
     email_from_name: str = "neudiagnostics"
     
+    # RabbitMQ settings
+    rabbitmq_url: str = "amqp://guest:guest@localhost:5672/"
+    rabbitmq_queue_name: str = "diagnostic_notifications"
+    rabbitmq_prefetch_count: int = 10
+    rabbitmq_max_retries: int = 3
+    rabbitmq_dlq_name: str = "diagnostic_notifications_dlq"
+    
     model_config = ConfigDict(
         env_file=".env",
         case_sensitive=False
