@@ -8,13 +8,17 @@ if __name__ == "__main__":
 
 from fastapi import FastAPI
 from app.config import settings
+from app.routes import router as email_router
 
 # Create FastAPI application instance
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="A simple notification backend service with SMTP support"
+    description="A simple notification backend service with Mailgun SMTP email sending"
 )
+
+# Include routers
+app.include_router(email_router)
 
 
 @app.get("/")
