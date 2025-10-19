@@ -16,12 +16,16 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
     
-    # SMTP settings (for future notification implementation)
+    # SMTP settings (Mailgun configuration)
     smtp_host: Optional[str] = None
     smtp_port: int = 587
     smtp_username: Optional[str] = None
     smtp_password: Optional[str] = None
     smtp_use_tls: bool = True
+    
+    # Email settings
+    email_from: str = "notification@neudiagnostics.dadames.tech"
+    email_from_name: str = "neudiagnostics"
     
     model_config = ConfigDict(
         env_file=".env",
