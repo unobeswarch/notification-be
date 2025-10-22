@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     
     # Server settings
     host: str = "0.0.0.0"
-    port: int = 8000
+    port: int = 8003
     
     # SMTP settings (Mailgun configuration)
     smtp_host: Optional[str] = None
